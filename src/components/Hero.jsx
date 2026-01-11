@@ -14,11 +14,14 @@ function Hero() {
           <span className="text-xs font-medium tracking-[0.2em] uppercase text-neutral-500 mb-4 block">
             Open Mat Agency
           </span>
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-neutral-900 mb-3">
-            Own Your Brand
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-neutral-100 mb-3">
+            Own Your Brand.
           </h1>
-          <p className="text-base text-neutral-600">
-            Strategic consulting for combat sports in China
+          <p className="text-base text-neutral-400 mb-4">
+            In the World's Largest Market.
+          </p>
+          <p className="text-xs font-medium tracking-[0.15em] uppercase text-neutral-500">
+            Talent Management · IP Protection · Brand Localization
           </p>
         </SpotlightCard>
       </div>

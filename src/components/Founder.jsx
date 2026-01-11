@@ -1,43 +1,103 @@
 import TiltedCard from './TiltedCard'
+import FadeInText from './FadeInText'
 
 function Founder() {
-  const overlayContent = (
-    <div className="absolute inset-0 flex flex-col items-center justify-end p-6 bg-gradient-to-t from-black/80 to-transparent rounded-[15px]">
-      <span className="text-xl md:text-2xl font-bold text-white">JD + Black Belt</span>
-      <span className="text-base md:text-lg text-white/80">Attorney & Martial Artist</span>
-      <p className="text-sm text-white/60 mt-2 text-center">Bridging legal expertise with combat sports passion</p>
-    </div>
+  const founderOverlay = (
+    <p className="tilted-card-demo-text">
+      Shen Li
+    </p>
   )
 
   return (
     <section
-      className="min-h-screen px-[6%] md:px-[12%] py-24 md:py-48 flex flex-col justify-center items-center md:items-start"
+      className="min-h-screen px-[6%] md:px-[12%] py-24 md:py-48 flex flex-col justify-center items-center relative overflow-hidden"
       id="founder"
       data-scroll-section
     >
-      <p
-        className="text-[0.7rem] font-medium tracking-[0.2em] uppercase text-neutral-400 mb-8 md:mb-12 text-center md:text-left"
+      {/* Left Side Vertical Text */}
+      <div
+        className="absolute left-4 md:left-[6%] top-1/4 hidden md:block"
         data-scroll
-        data-scroll-speed="0.5"
+        data-scroll-speed="1.5"
+        data-scroll-direction="horizontal"
       >
-        The Founder
-      </p>
-      <div data-scroll data-scroll-speed="1.2">
-        <TiltedCard
-          imageSrc="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=500&fit=crop"
-          altText="Founder portrait"
-          captionText="JD + Black Belt"
-          containerHeight="420px"
-          containerWidth="100%"
-          imageHeight="420px"
-          imageWidth="350px"
-          rotateAmplitude={12}
-          scaleOnHover={1.05}
-          showMobileWarning={false}
-          displayOverlayContent={true}
-          overlayContent={overlayContent}
-        />
+        <FadeInText direction="left" delay={0.2}>
+          <p className="text-xs tracking-[0.3em] uppercase text-neutral-300 [writing-mode:vertical-lr] rotate-180">
+            JD + Black Belt
+          </p>
+        </FadeInText>
       </div>
+
+      {/* Right Side Vertical Text */}
+      <div
+        className="absolute right-4 md:right-[6%] top-1/2 hidden md:block"
+        data-scroll
+        data-scroll-speed="-1.5"
+        data-scroll-direction="horizontal"
+      >
+        <FadeInText direction="right" delay={0.3}>
+          <p className="text-xs tracking-[0.3em] uppercase text-neutral-300 [writing-mode:vertical-lr]">
+            Attorney & Martial Artist
+          </p>
+        </FadeInText>
+      </div>
+
+      {/* Left Horizontal Description */}
+      <div
+        className="absolute left-[6%] md:left-[10%] bottom-1/3 hidden md:block max-w-[180px]"
+        data-scroll
+        data-scroll-speed="1.2"
+      >
+        <FadeInText direction="left" delay={0.4}>
+          <p className="text-sm text-neutral-400 leading-relaxed">
+            Legal professional with deep expertise in cross-border transactions.
+          </p>
+        </FadeInText>
+      </div>
+
+      {/* Right Horizontal Description */}
+      <div
+        className="absolute right-[6%] md:right-[10%] top-1/3 hidden md:block max-w-[180px] text-right"
+        data-scroll
+        data-scroll-speed="-1.2"
+      >
+        <FadeInText direction="right" delay={0.6}>
+          <p className="text-sm text-neutral-400 leading-relaxed">
+            Brazilian Jiu-Jitsu Black Belt with championship-level experience.
+          </p>
+        </FadeInText>
+      </div>
+
+      {/* Section Label */}
+      <FadeInText direction="up" delay={0}>
+        <p
+          className="text-[0.7rem] font-medium tracking-[0.2em] uppercase text-neutral-400 mb-8 md:mb-12"
+          data-scroll
+          data-scroll-speed="0.5"
+        >
+          Founder
+        </p>
+      </FadeInText>
+
+      {/* Founder Card */}
+      <FadeInText direction="up" delay={0.1}>
+        <div data-scroll data-scroll-speed="1">
+          <TiltedCard
+            imageSrc="/ShenLi.png"
+            altText="Shen Li - Founder"
+            containerHeight="420px"
+            containerWidth="100%"
+            imageHeight="420px"
+            imageWidth="320px"
+            rotateAmplitude={12}
+            scaleOnHover={1.05}
+            showMobileWarning={false}
+            showTooltip={false}
+            displayOverlayContent={true}
+            overlayContent={founderOverlay}
+          />
+        </div>
+      </FadeInText>
     </section>
   )
 }

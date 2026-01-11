@@ -2,14 +2,17 @@ import { useEffect, useRef } from 'react'
 import LocomotiveScroll from 'locomotive-scroll'
 import { gsap } from 'gsap'
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(DrawSVGPlugin)
+gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger)
 import Nav from './components/Nav'
 import Hero from './components/Hero'
-import Problem from './components/Problem'
-import Services from './components/Services'
-import Intel from './components/Intel'
+import Mission from './components/Mission'
+import About from './components/About'
 import Founder from './components/Founder'
+import TalentManagement from './components/TalentManagement'
+import BrandExpansion from './components/BrandExpansion'
+import Intel from './components/Intel'
 import Contact from './components/Contact'
 import LiquidEther from './components/LiquidEther'
 
@@ -18,6 +21,9 @@ function App() {
   const locomotiveScrollRef = useRef(null)
 
   useEffect(() => {
+    // Reset scroll position on page load
+    window.scrollTo(0, 0)
+
     locomotiveScrollRef.current = new LocomotiveScroll({
       el: scrollRef.current,
       smooth: true,
@@ -25,6 +31,9 @@ function App() {
       multiplier: 0.8,
       class: 'is-inview'
     })
+
+    // Scroll to top after Locomotive Scroll initializes
+    locomotiveScrollRef.current.scrollTo(0, { duration: 0, disableLerp: true })
 
     // GSAP entrance animations
     gsap.fromTo(
@@ -67,10 +76,12 @@ function App() {
       <Nav />
       <main data-scroll-container ref={scrollRef}>
         <Hero />
-        <Problem />
-        <Services />
-        <Intel />
+        <Mission />
+        <About />
         <Founder />
+        <TalentManagement />
+        <BrandExpansion />
+        <Intel />
         <Contact />
       </main>
     </>
