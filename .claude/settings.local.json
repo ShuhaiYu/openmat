@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:reactbits.dev)",
+      "mcp__shadcn__search_items_in_registries",
+      "WebFetch(domain:github.com)",
+      "mcp__shadcn__get_project_registries",
+      "WebSearch",
+      "WebFetch(domain:www.reactbits.dev)",
+      "mcp__shadcn__view_items_in_registries",
+      "WebFetch(domain:allshadcn.com)",
+      "Bash(npm install:*)",
+      "Bash(timeout:*)",
+      "mcp__chrome-devtools__new_page",
+      "mcp__chrome-devtools__take_screenshot",
+      "mcp__chrome-devtools__navigate_page",
+      "mcp__chrome-devtools__evaluate_script",
+      "mcp__chrome-devtools__take_snapshot",
+      "mcp__chrome-devtools__click",
+      "Bash(npx shadcn@latest add:*)",
+      "mcp__shadcn__list_items_in_registries",
+      "Bash(npm run build:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "shadcn"
+  ]
+}
