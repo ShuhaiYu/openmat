@@ -87,12 +87,7 @@ function About() {
       <div className="text-center mb-12 md:mb-16">
         <FadeInText direction="up" delay={0.15}>
           <h2 className="text-2xl md:text-4xl font-semibold text-neutral-900 mb-2">
-            The Rule of Law.
-          </h2>
-        </FadeInText>
-        <FadeInText direction="up" delay={0.2}>
-          <h2 className="text-2xl md:text-4xl font-semibold text-neutral-900">
-            The Art of War.
+            We bridge the gap.
           </h2>
         </FadeInText>
       </div>
