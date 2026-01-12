@@ -2,11 +2,11 @@ import BubbleMenu from './BubbleMenu'
 
 function Nav() {
   const menuItems = [
-    { label: 'Home', href: '#home', rotation: -8, hoverStyles: { bgColor: '#3b82f6', textColor: '#ffffff' } },
-    { label: 'About', href: '#about', rotation: 8, hoverStyles: { bgColor: '#10b981', textColor: '#ffffff' } },
-    { label: 'Talent', href: '#talent', rotation: -8, hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' } },
-    { label: 'Brand', href: '#brand', rotation: 8, hoverStyles: { bgColor: '#ef4444', textColor: '#ffffff' } },
-    { label: 'Intel', href: '#intel', rotation: -8, hoverStyles: { bgColor: '#8b5cf6', textColor: '#ffffff' } }
+    { label: 'Home', href: '#home', rotation: -8, hoverStyles: { bgColor: '#1a1a1a', textColor: '#ffffff' } },
+    { label: 'About', href: '#about', rotation: 8, hoverStyles: { bgColor: '#BF9950', textColor: '#ffffff' } },
+    { label: 'Talent', href: '#talent', rotation: -8, hoverStyles: { bgColor: '#2a2a2a', textColor: '#ffffff' } },
+    { label: 'Brand', href: '#brand', rotation: 8, hoverStyles: { bgColor: '#BF9950', textColor: '#ffffff' } },
+    { label: 'Intel', href: '#intel', rotation: -8, hoverStyles: { bgColor: '#1a1a1a', textColor: '#ffffff' } }
   ]
 
   return (

@@ -24,11 +24,11 @@ function Contact() {
           </span>
           <a
             href="mailto:shen@openmat.com.cn"
-            className="text-xl md:text-2xl font-medium text-neutral-900 hover:text-neutral-600 transition-colors mb-6"
+            className="text-xl md:text-2xl font-medium text-neutral-100 hover:text-white transition-colors mb-6"
           >
             shen@openmat.com.cn
           </a>
-          <p className="text-sm text-neutral-500">
+          <p className="text-sm text-neutral-400">
             Level 8 No.908 Huamu Rd, Pudong, Shanghai, China
           </p>
         </SpotlightCard>
