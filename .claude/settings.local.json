@@ -19,7 +19,8 @@
       "mcp__chrome-devtools__click",
       "Bash(npx shadcn@latest add:*)",
       "mcp__shadcn__list_items_in_registries",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Skill(frontend-design)"
     ]
   },
   "enableAllProjectMcpServers": true,

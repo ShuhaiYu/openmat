@@ -1,50 +1,95 @@
-import TiltedCard from './TiltedCard'
 import FadeInText from './FadeInText'
+import ChinaWaveBackground from './ChinaWaveBackground'
 
 function Mission() {
-  const overlayContent = (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-slate-800/95 to-black/95 rounded-[15px]">
-      <span className="text-5xl md:text-6xl font-bold text-white">360°</span>
-      <span className="text-lg md:text-xl text-white/80 mt-2">Ecosystem</span>
-      <p className="text-sm text-white/60 mt-4 text-center px-4">for talent management in the East</p>
-    </div>
-  )
-
   return (
     <section
-      className="min-h-screen px-[6%] md:px-[12%] py-24 md:py-48 flex flex-col justify-center items-center md:items-end"
+      className="relative min-h-screen px-[6%] md:px-[12%] py-24 md:py-48 flex flex-col justify-center items-center overflow-hidden"
       data-scroll-section
     >
-      <FadeInText direction="up" delay={0}>
-        <p
-          className="text-[0.7rem] font-medium tracking-[0.2em] uppercase text-neutral-400 mb-8 md:mb-12 text-center md:text-right"
+      {/* China Wave Background */}
+      <ChinaWaveBackground />
+
+      {/* Top transition - fade from white */}
+      <div
+        className="absolute top-0 left-0 right-0 h-48 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%)',
+          zIndex: 6
+        }}
+      />
+
+      {/* Bottom transition - fade to white */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%)',
+          zIndex: 6
+        }}
+      />
+
+      {/* Content with z-index above background */}
+      <div className="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto">
+
+        {/* Content card - frosted glass for readability */}
+        <div
+          className="relative px-8 py-12 md:px-16 md:py-16"
+          style={{
+            background: 'rgba(255,255,255,0.92)',
+            backdropFilter: 'blur(24px)',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.12)',
+            borderRadius: '4px'
+          }}
           data-scroll
           data-scroll-speed="0.5"
         >
-          The Reclamation Project
-        </p>
-      </FadeInText>
-      <div data-scroll data-scroll-speed="1">
-        <TiltedCard
-          imageSrc="https://images.unsplash.com/photo-1545324418-cc6a8b6347e3?w=400&h=400&fit=crop"
-          altText="Mission ecosystem"
-          containerHeight="400px"
-          containerWidth="100%"
-          imageHeight="400px"
-          imageWidth="400px"
-          rotateAmplitude={14}
-          scaleOnHover={1.08}
-          showMobileWarning={false}
-          showTooltip={false}
-          displayOverlayContent={true}
-          overlayContent={overlayContent}
-        />
+          {/* Corner accents */}
+          <div className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2" style={{ borderColor: '#BF9950' }} />
+          <div className="absolute top-0 right-0 w-10 h-10 border-t-2 border-r-2" style={{ borderColor: '#BF9950' }} />
+          <div className="absolute bottom-0 left-0 w-10 h-10 border-b-2 border-l-2" style={{ borderColor: '#BF9950' }} />
+          <div className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2" style={{ borderColor: '#BF9950' }} />
+
+          {/* Subtitle */}
+          <FadeInText direction="up" delay={0}>
+            <p
+              className="text-xs md:text-sm tracking-[0.3em] uppercase mb-6"
+              style={{ color: '#BF9950' }}
+            >
+              The Reclamation Project
+            </p>
+          </FadeInText>
+
+          {/* Main heading */}
+          <FadeInText direction="up" delay={0.1}>
+            <h2
+              className="text-3xl md:text-5xl font-semibold tracking-tight mb-6"
+              style={{ color: '#1a1a1a' }}
+            >
+              Bridge to the East
+            </h2>
+          </FadeInText>
+
+          {/* Decorative divider */}
+          <div
+            className="w-16 h-[2px] mx-auto mb-6"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, #BF9950 50%, transparent 100%)',
+            }}
+          />
+
+          {/* Description text */}
+          <FadeInText direction="up" delay={0.2}>
+            <p
+              className="text-base md:text-lg leading-relaxed max-w-lg mx-auto"
+              style={{ color: '#444' }}
+            >
+              We bridge the gap between global influence and local monetization —
+              <span className="font-medium" style={{ color: '#BF9950' }}> creating pathways </span>
+              for talent to thrive in the world's largest market.
+            </p>
+          </FadeInText>
+        </div>
       </div>
-      <FadeInText direction="up" delay={0.3}>
-        <p className="text-lg md:text-xl font-medium text-neutral-900 mt-8 text-center md:text-right max-w-lg">
-          We don't just stop the leakage. We bridge the gap between global influence and local monetization.
-        </p>
-      </FadeInText>
     </section>
   )
 }
