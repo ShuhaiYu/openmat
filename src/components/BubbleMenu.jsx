@@ -178,11 +178,13 @@ export default function BubbleMenu({
         }
         @media (max-width: 899px) {
           .bubble-menu-items {
-            padding-top: 120px;
+            padding-top: 100px;
             align-items: flex-start;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
           }
           .bubble-menu-items .pill-list {
-            row-gap: 16px;
+            row-gap: 12px;
           }
           .bubble-menu-items .pill-list .pill-col {
             flex: 0 0 100% !important;
@@ -190,17 +192,23 @@ export default function BubbleMenu({
             overflow: visible;
           }
           .bubble-menu-items .pill-link {
-            font-size: clamp(1.2rem, 3vw, 4rem);
-            padding: clamp(1rem, 2vw, 2rem) 0;
-            min-height: 80px !important;
+            font-size: clamp(1rem, 5vw, 1.5rem);
+            padding: clamp(0.75rem, 2vw, 1.25rem) 0;
+            min-height: 56px !important;
           }
           .bubble-menu-items .pill-link:hover {
-            transform: scale(1.06);
+            transform: scale(1.04);
             background: var(--hover-bg);
             color: var(--hover-color);
           }
           .bubble-menu-items .pill-link:active {
-            transform: scale(.94);
+            transform: scale(.96);
+          }
+        }
+        @media (max-width: 374px) {
+          .bubble-menu-items .pill-link {
+            font-size: 0.9rem;
+            min-height: 48px !important;
           }
         }
       `}</style>

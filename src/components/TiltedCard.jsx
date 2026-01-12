@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 
 const springValues = {
@@ -17,7 +17,7 @@ export default function TiltedCard({
   imageWidth = '300px',
   scaleOnHover = 1.1,
   rotateAmplitude = 14,
-  showMobileWarning = true,
+  showMobileWarning = false, // Disabled by default now
   showTooltip = true,
   overlayContent = null,
   displayOverlayContent = false
@@ -36,9 +36,18 @@ export default function TiltedCard({
   });
 
   const [lastY, setLastY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   function handleMouse(e) {
-    if (!ref.current) return;
+    if (!ref.current || isMobile) return;
 
     const rect = ref.current.getBoundingClientRect();
     const offsetX = e.clientX - rect.left - rect.width / 2;
@@ -59,16 +68,27 @@ export default function TiltedCard({
   }
 
   function handleMouseEnter() {
+    if (isMobile) return;
     scale.set(scaleOnHover);
     opacity.set(1);
   }
 
   function handleMouseLeave() {
+    if (isMobile) return;
     opacity.set(0);
     scale.set(1);
     rotateX.set(0);
     rotateY.set(0);
     rotateFigcaption.set(0);
+  }
+
+  // Mobile tap animation
+  function handleTouchStart() {
+    scale.set(0.98);
+  }
+
+  function handleTouchEnd() {
+    scale.set(1);
   }
 
   return (
@@ -81,12 +101,9 @@ export default function TiltedCard({
       }}
       onMouseMove={handleMouse}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
-      {showMobileWarning && (
-        <div className="absolute top-4 text-center text-sm block sm:hidden">
-          This effect is not optimized for mobile. Check on desktop.
-        </div>
-      )}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}>
       <motion.div
         className="relative [transform-style:preserve-3d]"
         style={{

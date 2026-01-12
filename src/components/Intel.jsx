@@ -83,20 +83,33 @@ function Intel() {
         </FadeInText>
       </div>
 
-      {/* Main Circle Progress */}
+      {/* Main Circle Progress - responsive size */}
       <FadeInText direction="up" delay={0.2}>
         <div
-          className="mb-16 md:mb-20 text-center"
+          className="mb-12 md:mb-20 text-center"
           data-scroll
           data-scroll-speed="0.5"
         >
-          <CircleProgress
-            value={85}
-            size={280}
-            strokeWidth={10}
-            color="#171717"
-            label="Revenue Displacement"
-          />
+          {/* Smaller circle on mobile */}
+          <div className="block md:hidden">
+            <CircleProgress
+              value={85}
+              size={200}
+              strokeWidth={8}
+              color="#171717"
+              label="Revenue Displacement"
+            />
+          </div>
+          {/* Larger circle on desktop */}
+          <div className="hidden md:block">
+            <CircleProgress
+              value={85}
+              size={280}
+              strokeWidth={10}
+              color="#171717"
+              label="Revenue Displacement"
+            />
+          </div>
           <p className="text-xs text-neutral-400 mt-4 max-w-[200px] mx-auto">
             Lost to piracy without official presence
           </p>
@@ -105,27 +118,29 @@ function Intel() {
 
       {/* Bar Charts */}
       <FadeInText direction="up" delay={0.3}>
-        <p className="text-[0.7rem] font-medium tracking-[0.2em] uppercase text-neutral-400 mb-8 text-center">
+        <p className="text-[0.7rem] font-medium tracking-[0.2em] uppercase text-neutral-400 mb-6 md:mb-8 text-center">
           China Market 2026
         </p>
       </FadeInText>
 
+      {/* Responsive: vertical stack on mobile, horizontal on desktop */}
       <div
-        className="flex gap-12 md:gap-20 justify-center"
+        className="flex flex-col md:flex-row gap-8 md:gap-20 justify-center items-center w-full max-w-md md:max-w-none mx-auto"
         data-scroll
         data-scroll-speed="0.8"
       >
         {barMetrics.map((metric, index) => (
-          <AnimatedBar
-            key={metric.label}
-            value={metric.value}
-            maxValue={100}
-            label={metric.label}
-            detail={metric.detail}
-            description={metric.description}
-            height={140}
-            delay={0.2 * index}
-          />
+          <div key={metric.label} className="w-full md:w-auto flex justify-center">
+            <AnimatedBar
+              value={metric.value}
+              maxValue={100}
+              label={metric.label}
+              detail={metric.detail}
+              description={metric.description}
+              height={100}
+              delay={0.2 * index}
+            />
+          </div>
         ))}
       </div>
 

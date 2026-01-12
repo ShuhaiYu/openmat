@@ -105,8 +105,8 @@ function TalentManagement() {
               <h3 className="text-xl font-semibold text-neutral-900 mb-6 text-center">
                 Apply for Representation
               </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <input
                     type="text"
                     name="name"
@@ -114,7 +114,7 @@ function TalentManagement() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-xl text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-neutral-500 transition-colors"
+                    className="w-full px-4 py-4 md:py-3 bg-neutral-700/80 border border-neutral-600 rounded-xl text-neutral-100 placeholder-neutral-400 focus:outline-none focus:border-neutral-400 focus:ring-2 focus:ring-neutral-400/20 transition-all text-base"
                   />
                   <input
                     type="text"
@@ -123,7 +123,7 @@ function TalentManagement() {
                     value={formData.discipline}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-xl text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-neutral-500 transition-colors"
+                    className="w-full px-4 py-4 md:py-3 bg-neutral-700/80 border border-neutral-600 rounded-xl text-neutral-100 placeholder-neutral-400 focus:outline-none focus:border-neutral-400 focus:ring-2 focus:ring-neutral-400/20 transition-all text-base"
                   />
                 </div>
                 <input
@@ -133,23 +133,31 @@ function TalentManagement() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-xl text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-neutral-500 transition-colors"
+                  className="w-full px-4 py-4 md:py-3 bg-neutral-700/80 border border-neutral-600 rounded-xl text-neutral-100 placeholder-neutral-400 focus:outline-none focus:border-neutral-400 focus:ring-2 focus:ring-neutral-400/20 transition-all text-base"
                 />
-                <select
-                  name="chinaReach"
-                  value={formData.chinaReach}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-xl text-neutral-100 focus:outline-none focus:border-neutral-500 transition-colors appearance-none cursor-pointer"
-                >
-                  <option value="" disabled>Current China Reach</option>
-                  {chinaReachOptions.map(option => (
-                    <option key={option} value={option}>{option}</option>
-                  ))}
-                </select>
+                <div className="relative">
+                  <select
+                    name="chinaReach"
+                    value={formData.chinaReach}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-4 md:py-3 bg-neutral-700/80 border border-neutral-600 rounded-xl text-neutral-100 focus:outline-none focus:border-neutral-400 focus:ring-2 focus:ring-neutral-400/20 transition-all appearance-none cursor-pointer text-base pr-10"
+                  >
+                    <option value="" disabled>Current China Reach</option>
+                    {chinaReachOptions.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                  {/* Dropdown arrow */}
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <svg className="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
                 <button
                   type="submit"
-                  className="w-full py-4 bg-neutral-100 text-neutral-900 font-medium rounded-xl hover:bg-neutral-200 transition-colors"
+                  className="w-full py-4 md:py-4 bg-neutral-100 text-neutral-900 font-semibold rounded-xl hover:bg-white active:scale-[0.98] transition-all text-base min-h-[52px]"
                 >
                   Submit Application
                 </button>

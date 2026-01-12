@@ -6,11 +6,34 @@ const SpotlightCard = ({ children, className = '', spotlightColor = 'rgba(255, 2
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
 
-  const handleMouseMove = e => {
+  const updatePosition = (clientX, clientY) => {
     if (!divRef.current || isFocused) return;
-
     const rect = divRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    setPosition({ x: clientX - rect.left, y: clientY - rect.top });
+  };
+
+  const handleMouseMove = e => {
+    updatePosition(e.clientX, e.clientY);
+  };
+
+  // Touch support for mobile
+  const handleTouchStart = e => {
+    if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      updatePosition(touch.clientX, touch.clientY);
+      setOpacity(0.6);
+    }
+  };
+
+  const handleTouchMove = e => {
+    if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      updatePosition(touch.clientX, touch.clientY);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setOpacity(0);
   };
 
   const handleFocus = () => {
@@ -35,6 +58,9 @@ const SpotlightCard = ({ children, className = '', spotlightColor = 'rgba(255, 2
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       onFocus={handleFocus}
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
