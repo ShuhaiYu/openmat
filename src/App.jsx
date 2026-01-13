@@ -3,6 +3,7 @@ import LocomotiveScroll from 'locomotive-scroll'
 import { gsap } from 'gsap'
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollContext } from './context/ScrollContext'
 
 gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger)
 import Nav from './components/Nav'
@@ -76,7 +77,7 @@ function App() {
   }, [isMobile])
 
   return (
-    <>
+    <ScrollContext.Provider value={locomotiveScrollRef}>
       {/* Background - WebGL on desktop, gradient on mobile */}
       <div className="fixed inset-0 -z-10 pointer-events-auto">
         {isMobile ? (
@@ -112,7 +113,7 @@ function App() {
         <Intel />
         <Contact />
       </main>
-    </>
+    </ScrollContext.Provider>
   )
 }
 

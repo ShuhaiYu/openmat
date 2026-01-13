@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { useLocomotiveScroll } from '../context/ScrollContext';
 
 const DEFAULT_ITEMS = [
   {
@@ -55,6 +56,7 @@ export default function BubbleMenu({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const locomotiveScrollRef = useLocomotiveScroll();
 
   const overlayRef = useRef(null);
   const bubblesRef = useRef([]);
@@ -323,6 +325,28 @@ export default function BubbleMenu({
                   role="menuitem"
                   href={item.href}
                   aria-label={item.ariaLabel || item.label}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    // Use Locomotive Scroll to navigate to the section
+                    const targetId = item.href.replace('#', '');
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement && locomotiveScrollRef?.current) {
+                      // Small delay to allow menu close animation
+                      setTimeout(() => {
+                        locomotiveScrollRef.current.scrollTo(targetElement, {
+                          offset: 0,
+                          duration: 800,
+                          easing: [0.25, 0.0, 0.35, 1.0]
+                        });
+                      }, 300);
+                    } else if (targetElement) {
+                      // Fallback for mobile (native scroll)
+                      setTimeout(() => {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                      }, 300);
+                    }
+                  }}
                   className={[
                     'pill-link',
                     'w-full',
