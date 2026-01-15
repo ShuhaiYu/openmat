@@ -36,10 +36,34 @@ function TalentManagement() {
     chinaReach: ''
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setIsSubmitting(true)
+    setError('')
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit application')
+      }
+
+      setSubmitted(true)
+    } catch (err) {
+      setError('提交失败，请稍后重试')
+      console.error('Submit error:', err)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e) => {
@@ -155,11 +179,17 @@ function TalentManagement() {
                     </svg>
                   </div>
                 </div>
+                {error && (
+                  <div className="text-red-400 text-sm text-center py-2">
+                    {error}
+                  </div>
+                )}
                 <button
                   type="submit"
-                  className="w-full py-4 md:py-4 bg-neutral-100 text-neutral-900 font-semibold rounded-xl hover:bg-white active:scale-[0.98] transition-all text-base min-h-[52px]"
+                  disabled={isSubmitting}
+                  className="w-full py-4 md:py-4 bg-neutral-100 text-neutral-900 font-semibold rounded-xl hover:bg-white active:scale-[0.98] transition-all text-base min-h-[52px] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Submit Application
+                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
                 </button>
               </form>
             </SpotlightCard>
